@@ -18,7 +18,8 @@ const onMouseOut = (event) => {
 class Header extends Component {
   render() {
     const theme = this.props.theme;
-    const link = settings.isSplash ? "/splash" : "home";
+    const link = settings.isSplash ? "/splash" : "/home";
+
     return (
       <Fade top duration={1000} distance="20px">
         <SeoHeader />
@@ -41,6 +42,11 @@ class Header extends Component {
                   to="/home"
                   tag={Link}
                   activeStyle={{ fontWeight: "bold" }}
+                  isActive={() =>
+                    link === "/home" &&
+                    this.props.location &&
+                    this.props.location.pathname === "/"
+                  }
                   style={{ color: theme.text }}
                   onMouseEnter={(event) => onMouseEnter(event, theme.highlight)}
                   onMouseOut={(event) => onMouseOut(event)}
